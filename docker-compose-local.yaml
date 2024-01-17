@@ -1,0 +1,37 @@
+version: "3.0"
+services:
+  db_pg_2401:
+    container_name: "db_pg_2401"
+    image: postgres:14.1-alpine
+    restart: always
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${PG_DB_2401_DB}
+      POSTGRES_USER: ${PG_DB_2401_USER}
+      POSTGRES_PASSWORD: ${PG_DB_2401_PASSWORD}
+    ports:
+      - ${PG_DB_2401_PORT}:5432
+    volumes:
+      - db_pg_2401:/var/lib/postgresql/data
+  test_db_pg_2401:
+    container_name: "test_db_pg_2401"
+    image: postgres:14.1-alpine
+    restart: always
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${PG_DB_2401_DB_TEST}
+      POSTGRES_USER: ${PG_DB_2401_USER_TEST}
+      POSTGRES_PASSWORD: ${PG_DB_2401_PASSWORD_TEST}
+    ports:
+      - ${PG_DB_2401_PORT_TEST}:5432
+    volumes:
+      - test_db_pg_2401:/var/lib/postgresql/data
+networks:
+  default:
+    name: nginx_proxy
+    external: true
+volumes:
+  db_pg_2401:
+  test_db_pg_2401:
