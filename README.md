@@ -1,4 +1,5 @@
 # БАЗА
+SQLAlchemy
 
 class User(Base):
     __tablename__ = "users"
@@ -15,3 +16,5 @@ class User(Base):
 # ТЕСТОВАЯ БАЗА (такая же)
 
 # СЕТЬ NGINX_PROXY
+
+# REDIS
