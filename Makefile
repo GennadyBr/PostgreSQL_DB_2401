@@ -18,3 +18,10 @@ venv:
 
 net:
 	docker network create nginx_proxy
+	
+5433:
+	sudo lsof -i -P -n | grep 5433
+
+8000:
+	sudo lsof -i -P -n | grep 8000
+
