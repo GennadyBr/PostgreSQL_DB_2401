@@ -1,5 +1,20 @@
 version: "3.0"
 services:
+  redis_2401:
+    image: redis:7.2-rc2
+    container_name: redis_2401
+    restart: always
+    ports:
+      - ${RD_2401_PORT}:6379
+    #    environment:
+    #      REDIS_PASSWORD: ${RD_2401_PASSWORD}
+    #    command: /bin/sh -c "redis-server --requirepass $$RD_2401_PASSWORD"
+    command: /bin/sh -c "redis-server"
+    env_file:
+      - .env
+    volumes:
+      - redis-data_2401:/data
+
   db_pg_2401:
     container_name: "db_pg_2401"
     image: postgres:14.1-alpine
@@ -14,6 +29,7 @@ services:
       - ${PG_DB_2401_PORT}:5432
     volumes:
       - db_pg_2401:/var/lib/postgresql/data
+
   test_db_pg_2401:
     container_name: "test_db_pg_2401"
     image: postgres:14.1-alpine
@@ -28,10 +44,13 @@ services:
       - ${PG_DB_2401_PORT_TEST}:5432
     volumes:
       - test_db_pg_2401:/var/lib/postgresql/data
+
 networks:
   default:
     name: nginx_proxy
     external: true
+
 volumes:
   db_pg_2401:
   test_db_pg_2401:
+  redis-data_2401:
