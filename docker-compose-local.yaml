@@ -25,8 +25,8 @@ services:
       POSTGRES_DB: ${PG_DB_2401_DB}
       POSTGRES_USER: ${PG_DB_2401_USER}
       POSTGRES_PASSWORD: ${PG_DB_2401_PASSWORD}
-    ports:
-      - ${PG_DB_2401_PORT}:5432
+    expose:
+      - 5432
     volumes:
       - db_pg_2401:/var/lib/postgresql/data
 
@@ -40,8 +40,8 @@ services:
       POSTGRES_DB: ${PG_DB_2401_DB_TEST}
       POSTGRES_USER: ${PG_DB_2401_USER_TEST}
       POSTGRES_PASSWORD: ${PG_DB_2401_PASSWORD_TEST}
-    ports:
-      - ${PG_DB_2401_PORT_TEST}:5432
+    expose:
+      - 5432
     volumes:
       - test_db_pg_2401:/var/lib/postgresql/data
 
