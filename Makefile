@@ -1,3 +1,12 @@
+upv:
+	sudo docker-compose -f docker-compose-local.yaml up -d --build
+
+downv:
+	sudo docker-compose -f docker-compose-local.yaml down --remove-orphans
+
+psv:
+	sudo docker-compose -f docker-compose-local.yaml ps
+
 up:
 	docker compose -f docker-compose-local.yaml up -d --build
 
@@ -8,16 +17,16 @@ ps:
 	docker compose -f docker-compose-local.yaml ps
 
 al:
-	alembic upgrade heads && cd tests && alembic upgrade heads
+	sudo alembic upgrade heads && cd tests && alembic upgrade heads
 
 main:
-	python main.py
+	sudo python main.py
 
 venv:
-	python3.11 -m venv venv
+	sudo python3.11 -m venv venv
 
 net:
-	docker network create nginx_proxy
+	sudo docker network create nginx_proxy
 	
 5433:
 	sudo lsof -i -P -n | grep 5433
