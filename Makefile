@@ -1,20 +1,20 @@
 upv:
-	sudo docker-compose -f docker-compose-local.yaml up -d --build
+	sudo docker-compose -f docker-compose.yaml up -d --build
 
 downv:
-	sudo docker-compose -f docker-compose-local.yaml down --remove-orphans
+	sudo docker-compose -f docker-compose.yaml down --remove-orphans
 
 psv:
-	sudo docker-compose -f docker-compose-local.yaml ps
+	sudo docker-compose -f docker-compose.yaml ps
 
 up:
-	docker compose -f docker-compose-local.yaml up -d --build
+	docker compose -f docker-compose.yaml up -d --build
 
 down:
-	docker compose -f docker-compose-local.yaml down --remove-orphans
+	docker compose -f docker-compose.yaml down --remove-orphans
 
 ps:
-	docker compose -f docker-compose-local.yaml ps
+	docker compose -f docker-compose.yaml ps
 
 al:
 	sudo alembic upgrade heads && cd tests && alembic upgrade heads
