@@ -6,9 +6,6 @@ services:
     restart: always
     ports:
       - ${RD_2401_PORT}:6379
-    #    environment:
-    #      REDIS_PASSWORD: ${RD_2401_PASSWORD}
-    #    command: /bin/sh -c "redis-server --requirepass $$RD_2401_PASSWORD"
     command: /bin/sh -c "redis-server"
     env_file:
       - .env
@@ -25,8 +22,10 @@ services:
       POSTGRES_DB: ${PG_DB_2401_DB}
       POSTGRES_USER: ${PG_DB_2401_USER}
       POSTGRES_PASSWORD: ${PG_DB_2401_PASSWORD}
-    expose:
-      - 5432
+    ports:
+      - 5432:5432
+#    expose:
+#      - 5432
     volumes:
       - db_pg_2401:/var/lib/postgresql/data
 
@@ -40,8 +39,10 @@ services:
       POSTGRES_DB: ${PG_DB_2401_DB_TEST}
       POSTGRES_USER: ${PG_DB_2401_USER_TEST}
       POSTGRES_PASSWORD: ${PG_DB_2401_PASSWORD_TEST}
-    expose:
-      - 5432
+    ports:
+      - 5433:5432
+#    expose:
+#      - 5432
     volumes:
       - test_db_pg_2401:/var/lib/postgresql/data
 
