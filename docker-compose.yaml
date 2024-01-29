@@ -13,7 +13,7 @@ services:
       - redis-data_2401:/data
 
   db_pg_2401:
-    image: postgres:14.1-alpine
+    image: postgres:13
     container_name: "db_pg_2401"
     restart: always
     env_file:
@@ -31,7 +31,7 @@ services:
 
   test_db_pg_2401:
     container_name: "test_db_pg_2401"
-    image: postgres:14.1-alpine
+    image: postgres:13
     restart: always
     env_file:
       - .env
